@@ -5,5 +5,5 @@ import email_validator
 
 class email_verification(FlaskForm):
     email = StringField(label="Email", validators= [validators.DataRequired("Email is required."),validators.Email("Email address format is incorrect.")])
-    veri_code = StringField(label="Verification code", validators=[validators.DataRequired("Verification code is required."),validators.NumberRange(max=6)])
+    veri_code = StringField(label="Verification code")
     submit = SubmitField()

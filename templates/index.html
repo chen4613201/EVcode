@@ -1,22 +1,50 @@
 {% extends "bootstrap/base.html" %}
+{% block title %}
+ANCwear-Download
+{% endblock title %}
 {% block content %}
 <div class="container" style="min-height:500px;max-width:500px">
-    <form method="POST" action="/" style="margin-top:200px;border: 1px solid;padding:50px">
+    <form method="POST" action="/" style="margin-top:100px;border: 1px solid rgba(0,0,0,.125);border-radius:5px;padding:30px ">
         {{ email_form.csrf_token }}
         <div class="form-group text-center">
             <p>Download the right app, please enter your email address and confirm the security code</p>
         </div>
         <div class="form-group">
-        {{ email_form.email.label }}
-        {{ email_form.email(class_="form-control") }}
+            {{ email_form.email.label }}
+            {{ email_form.email(class_="form-control", id="input_email") }}
+            {% for item in email_form.email.errors %}
+                <p style="color:red">{{ item }}</p>
+            {% endfor %}
         </div>
         <div class="form-group">
-        {{ email_form.veri_code.label }}
-        {{ email_form.veri_code(class_="form-control") }}
+            {{ email_form.veri_code.label }}
+            <div id = "input_code" class="input-group">
+                {{ email_form.veri_code(class_="form-control") }}
+                <div class="input-group-prepend">
+                    <!--a class="btn btn-success" href="{#{ url_for('send_email');print(type(email_form.email)) }#}">Send</a-->
+                    <!--a class="btn btn-success" href="{#{ email_form.email.value }#}">Send</a-->
+                  <button class="btn btn-success" onclick="SendEmail()">Send</button>
+                </div>
+            </div>
+            {% for item in email_form.veri_code.errors %}
+                <p style="color:red">{{ item }}</p>
+            {% endfor %}
         </div>
         <div class="form-group">
-        {{ email_form.submit(class_="btn btn-primary btn-block") }}
+            {{ email_form.submit(class_="btn btn-success btn-block") }}
         </div>
     </form>
 </div>
+
+
+
+{% endblock content%}
+
+{% block styles %}
+{{ super() }}
+<link href="{{ url_for('static', filename='css/EVcode.css') }}" rel="stylesheet">
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/EVcode.js') }}"></script>
 {% endblock %}
