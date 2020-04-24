@@ -2,7 +2,21 @@
 {% block title %}
 ANCwear-Download
 {% endblock title %}
+
 {% block content %}
+{% with errors = get_flashed_messages() %}
+{% if errors %}
+<div class="alert-message block-message error">
+  <a class="close" href="#">×</a>
+  <ul>
+    {%- for msg in errors %}
+    <li>{{ msg }}</li>
+    {% endfor -%}
+  </ul>
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="container" style="min-height:500px;max-width:500px">
     <form method="POST" action="/" style="margin-top:100px;border: 1px solid rgba(0,0,0,.125);border-radius:5px;padding:30px ">
         {{ email_form.csrf_token }}

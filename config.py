@@ -1,6 +1,15 @@
+
 SECRET_KEY='dev'
+
 APP_FILE="./appfile/Bluetooth_notification.apk"
-SMTP_HOST = "mail.ancam-tech.com"
-SMTP_SENDER = "service@ancam-tech.com"
-SMTP_PWD = "ZXCV1qaz!@#$"
-SMTP_PORT = "465"
+
+#email configure
+MAIL_SERVER = 'mail.ancam-tech.com'
+MAIL_PORT = 26
+MAIL_USE_TLS = True
+MAIL_USERNAME = 'service@ancam-tech.com'
+MAIL_PASSWORD = 'ZXCV1qaz!@#$'
+
+#db configure
+SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:Abc1234%@94.191.110.35:3306/mblog"
+SQLALCHEMY_TRACK_MODIFICATIONS=True

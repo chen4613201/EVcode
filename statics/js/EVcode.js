@@ -1,6 +1,5 @@
 function SendEmail() {
 		User_Email = $('#input_email').val();
-		//console.log("User_Email"+User_Email);
 		$.ajax({
 			url:"/send_email",
 			data:{
@@ -17,5 +16,4 @@ function SendEmail() {
                 console.log(e.responseText);
             }
 		});
-		//$("#home").append(str);
 }
