@@ -5,15 +5,21 @@ function SendEmail() {
 			data:{
 				'user_email':User_Email
 			},
-			type:"POST",
+			type:"GET",
 			async:false,
 			success:function(result) {
-				console.log(result);
-				str = result;
+				if(result=='1'){
+					$("#Send_Status").html("Succeed");
+					$("#Send_Status").css("color","green")
+				}else{
+					$("#Send_Status").html("Failed");
+					$("#Send_Status").css("color","red")
+					confirm("Send Failed,Please contact system administrator.")
+				}
+
 			},
 			error:function(e){
-                console.log(e.status);
-                console.log(e.responseText);
+				confirm("Send Failed,Please contact system administrator.")
             }
 		});
 }

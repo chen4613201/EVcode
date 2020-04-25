@@ -37,7 +37,8 @@ ANCwear-Download
                 <div class="input-group-prepend">
                     <!--a class="btn btn-success" href="{#{ url_for('send_email');print(type(email_form.email)) }#}">Send</a-->
                     <!--a class="btn btn-success" href="{#{ email_form.email.value }#}">Send</a-->
-                  <button class="btn btn-success" onclick="SendEmail()">Send</button>
+                    <button class="btn btn-success" onclick="SendEmail()">Send</button>
+                    <span id="Send_Status" style="display: flex;  align-items: center;  margin-left: 5px"></span>
                 </div>
             </div>
             {% for item in email_form.veri_code.errors %}

@@ -23,18 +23,17 @@ def index():
     if request.method=="POST" and email_form.validate_on_submit():
         veri_code = request.form.get('veri_code')
         user_email = request.form.get('email')
+        print("++++++:"+session.get("veri_code"))
         if veri_code == session.get("veri_code"):
-            db.drop_all()
-            db.create_all()
+            #db.drop_all()
+            #db.create_all()
             New_Record = Download_Record(User_Email=user_email, Veri_Code=veri_code)
             db.session.add(New_Record)
             db.session.commit()
-            del_session("veri_code")
+            email_form.veri_code.errors[:]=[]
             return send_from_directory(r"./appfile",filename="Bluetooth_notification.apk",as_attachment=True)
         else:
             email_form.veri_code.errors.append("The Verification Code is incorrect,click 'Send' button to get it.")
-            del_session("veri_code")
-            print(email_form.veri_code.validators)
 
     return render_template("index.html", email_form=email_form)
 
@@ -53,14 +52,12 @@ def del_session(session_key):
         session.pop(session_key)
 
 
-@app.route("/send_email",methods=["POST"])
+@app.route("/send_email",methods=["GET"])
 def send_email():
     customer_email = request.values.get("user_email")
-    print("+++++"+customer_email)
+    del_session("veri_code")
     session["veri_code"] = gen_code()
-    print("send_email:session    "+session["veri_code"])
-
-    print("-------"+app.config.get('MAIL_USERNAME'))
+    print("------:"+session.get("veri_code"))
     email_sender = app.config.get('MAIL_USERNAME')
     msg_body = str('Hey ' + customer_email + '!\n\n  Verification code:' + session["veri_code"]+'\nThanks,\nThe ANCwear Team')
     msg=Message("ANCwear App Download", body=msg_body, sender=email_sender,recipients=[customer_email])
@@ -74,5 +71,4 @@ def send_email():
 
 
 if __name__ == "__main__":
-
     app.run(debug=True)
