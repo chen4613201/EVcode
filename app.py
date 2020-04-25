@@ -62,8 +62,8 @@ def send_email():
     msg_body = str('Hey ' + customer_email + '!\n\n  Verification code:' + session["veri_code"]+'\nThanks,\nThe ANCwear Team')
     msg=Message("ANCwear App Download", body=msg_body, sender=email_sender,recipients=[customer_email])
     try:
-        #with app.app_context():
-            #mail.send(msg)
+        with app.app_context():
+            mail.send(msg)
         print("send_email:Send Successfully!")
         return "1"
     except Exception as e:
