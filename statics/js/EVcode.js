@@ -5,8 +5,9 @@ function SendEmail() {
 			data:{
 				'user_email':User_Email
 			},
+			timeout:3000,
 			type:"GET",
-			async:false,
+			async:true,
 			success:function(result) {
 				if(result=='1'){
 					$("#Send_Status").html("Succeed");
