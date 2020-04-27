@@ -12,6 +12,7 @@ function SendEmail() {
 				if(result=='1'){
 					$("#Send_Status").html("Succeed");
 					$("#Send_Status").css("color","green")
+					$("#veriCodeError").hide()
 				}else{
 					$("#Send_Status").html("Failed");
 					$("#Send_Status").css("color","red")

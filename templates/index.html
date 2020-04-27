@@ -37,12 +37,12 @@ ANCwear-Download
                 <div class="input-group-prepend">
                     <!--a class="btn btn-success" href="{#{ url_for('send_email');print(type(email_form.email)) }#}">Send</a-->
                     <!--a class="btn btn-success" href="{#{ email_form.email.value }#}">Send</a-->
-                    <span class="btn btn-success" onclick="SendEmail()">Send</span>
+                    <span id="Send_btn" class="btn btn-success" onclick="SendEmail()">Send</span>
                     <span id="Send_Status" style="display: flex;  align-items: center;  margin-left: 5px"></span>
                 </div>
             </div>
             {% for item in email_form.veri_code.errors %}
-                <p style="color:red">{{ item }}</p>
+                <p id="veriCodeError" style="color:red">{{ item }}</p>
             {% endfor %}
         </div>
         <div class="form-group">
@@ -62,4 +62,9 @@ ANCwear-Download
 {% block scripts %}
 {{ super() }}
 <script src="{{ url_for('static', filename='js/EVcode.js') }}"></script>
+<script type="text/javascript">
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+</script>
 {% endblock %}

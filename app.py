@@ -25,15 +25,11 @@ def index():
         user_email = request.form.get('email')
         print("++++++:",session.get("veri_code"))
         if veri_code == session.get("veri_code"):
-            #db.drop_all()
-            #db.create_all()
             New_Record = Download_Record(User_Email=user_email, Veri_Code=veri_code)
             db.session.add(New_Record)
             db.session.commit()
             email_form.veri_code.errors[:]=[]
             return send_from_directory(r"./appfile",filename="Bluetooth_notification.apk",as_attachment=True)
-        else:
-            email_form.veri_code.errors.append("The Verification Code is incorrect,click 'Send' button toget it.")
 
     return render_template("index.html", email_form=email_form)
 
