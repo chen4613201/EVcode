@@ -59,7 +59,7 @@ def send_email():
     session["veri_code"] = gen_code()
     print("------:"+session.get("veri_code"))
     email_sender = app.config.get('MAIL_USERNAME')
-    msg_body = str('Hey ' + customer_email + '!\n\n  Verification code:' + session["veri_code"]+'\n\nThanks,\nThe ANCwear Team')
+    msg_body = str('Hey ' + customer_email + '!\n\n  Verification code:' + session["veri_code"]+'\nThanks,\nThe ANCwear Team')
     msg=Message("ANCwear App Download", body=msg_body, sender=email_sender,recipients=[customer_email])
     try:
         with app.app_context():
@@ -67,7 +67,6 @@ def send_email():
         print("send_email:Send Successfully!")
         return "1"
     except Exception as e:
-        print(e)
         return "0"
 
 
