@@ -16,6 +16,7 @@ function SendEmail() {
 				}else{
 					$("#Send_Status").html("Failed");
 					$("#Send_Status").css("color","red")
+					$("#veriCodeError").show()
 					confirm("Send Failed,try again.")
 				}
 			},
