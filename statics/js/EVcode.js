@@ -5,7 +5,7 @@ function SendEmail() {
 			data:{
 				'user_email':User_Email
 			},
-			timeout:3000,
+			timeout:9000,
 			type:"POST",
 			async:true,
 			success:function(result) {
