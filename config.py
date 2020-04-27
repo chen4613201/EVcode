@@ -1,5 +1,5 @@
 
-SECRET_KEY=b'Bd-h-uQPCzpp-3-_7eZRDrkvTeYevE8xMeGDQzC4K04='
+SECRET_KEY='dev'
 
 APP_FILE="./appfile/Bluetooth_notification.apk"
 
