@@ -5,7 +5,7 @@ function SendEmail() {
 			data:{
 				'user_email':User_Email
 			},
-			type:"GET",
+			type:"POST",
 			async:false,
 			success:function(result) {
 				if(result=='1'){

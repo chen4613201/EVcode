@@ -52,7 +52,7 @@ def del_session(session_key):
         session.pop(session_key)
 
 
-@app.route("/send_email",methods=["GET"])
+@app.route("/send_email",methods=["POST"])
 def send_email():
     customer_email = request.values.get("user_email")
     del_session("veri_code")
@@ -62,8 +62,8 @@ def send_email():
     msg_body = str('Hey ' + customer_email + '!\n\n  Verification code:' + session["veri_code"]+'\nThanks,\nThe ANCwear Team')
     msg=Message("ANCwear App Download", body=msg_body, sender=email_sender,recipients=[customer_email])
     try:
-        with app.app_context():
-            mail.send(msg)
+        #with app.app_context():
+            #mail.send(msg)
         print("send_email:Send Successfully!")
         return "1"
     except Exception as e:
