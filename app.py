@@ -23,7 +23,7 @@ def index():
     if request.method=="POST" and email_form.validate_on_submit():
         veri_code = request.form.get('veri_code')
         user_email = request.form.get('email')
-        print("++++++:"+session.get("veri_code"))
+        print("++++++:",session.get("veri_code"))
         if veri_code == session.get("veri_code"):
             #db.drop_all()
             #db.create_all()
@@ -33,7 +33,7 @@ def index():
             email_form.veri_code.errors[:]=[]
             return send_from_directory(r"./appfile",filename="Bluetooth_notification.apk",as_attachment=True)
         else:
-            email_form.veri_code.errors.append("The Verification Code is incorrect,click 'Send' button to get it.")
+            email_form.veri_code.errors.append("The Verification Code is incorrect,click 'Send' button toget it.")
 
     return render_template("index.html", email_form=email_form)
 
@@ -57,7 +57,7 @@ def send_email():
     customer_email = request.values.get("user_email")
     del_session("veri_code")
     session["veri_code"] = gen_code()
-    print("------:"+session.get("veri_code"))
+    print("------:",session.get("veri_code"))
     email_sender = app.config.get('MAIL_USERNAME')
     msg_body = str('Hey ' + customer_email + '!\n\n  Verification code:' + session["veri_code"]+'\n\nThanks,\nThe ANCwear Team')
     msg=Message("ANCwear App Download", body=msg_body, sender=email_sender,recipients=[customer_email])

@@ -12,11 +12,10 @@ function SendEmail() {
 				if(result=='1'){
 					$("#Send_Status").html("Succeed");
 					$("#Send_Status").css("color","green")
-					confirm("Sent successfully, please check the email")
 				}else{
 					$("#Send_Status").html("Failed");
 					$("#Send_Status").css("color","red")
-					confirm("Send failed, try again")
+					confirm("Send Failed,try again.")
 				}
 			},
 			error:function(e){
