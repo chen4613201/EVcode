@@ -6,18 +6,18 @@ function SendEmail() {
 				'user_email':User_Email
 			},
 			timeout:3000,
-			type:"GET",
+			type:"POST",
 			async:true,
 			success:function(result) {
 				if(result=='1'){
 					$("#Send_Status").html("Succeed");
 					$("#Send_Status").css("color","green")
+					confirm("Sent successfully, please check the email")
 				}else{
 					$("#Send_Status").html("Failed");
 					$("#Send_Status").css("color","red")
-					confirm("Send Failed,Please contact system administrator.")
+					confirm("Send failed, try again")
 				}
-
 			},
 			error:function(e){
 				confirm("Send Failed,Please contact system administrator.")
